@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCFucker — Settings</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --surface: #0f0f0f;
+      --surface2: #141414;
+      --border: #1e1e1e;
+      --border2: #2a2a2a;
+      --text: #efefef;
+      --muted: #555;
+      --muted2: #888;
+      --accent: #fff;
+      --radius-sm: 10px;
+      --radius: 16px;
+      --radius-lg: 20px;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 56px;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      color: var(--text);
+    }
+
+    .logo em {
+      color: var(--muted);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .topbar-links {
+      display: flex;
+      gap: 6px;
+    }
+
+    .topbar-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 5px 12px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .topbar-links a:hover { color: var(--text); border-color: #444; }
+
+    /* Page title */
+    .page-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1.2px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--muted2);
+      margin-bottom: 48px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
+    }
+
+    .card-row:last-child { border-bottom: none; }
+
+    .row-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .row-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .row-desc {
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    /* Toggle switch */
+    .switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .switch input { opacity: 0; width: 0; height: 0; }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #1c1c1c;
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 2px;
+      top: 2px;
+      background: var(--muted);
+      border-radius: 50%;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    input:checked + .slider { background: #1a1a1a; border-color: #3a3a3a; }
+    input:checked + .slider::before {
+      transform: translateX(20px);
+      background: var(--accent);
+    }
+
+    /* Input field */
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .field {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text);
+      font-size: 13px;
+      font-family: 'Space Grotesk', monospace;
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+
+    .field::placeholder { color: var(--muted); }
+    .field:focus { border-color: #444; }
+
+    /* Preset buttons */
+    .presets {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--surface2);
+    }
+
+    .preset {
+      font-size: 11px;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--muted2);
+      background: none;
+      border: 1px solid var(--border2);
+      border-radius: 7px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .preset:hover { color: var(--text); border-color: #444; }
+
+    /* Status indicator */
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--muted2);
+      flex-shrink: 0;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      transition: background 0.3s;
+    }
+
+    .dot.on { background: #d0d0d0; box-shadow: 0 0 5px rgba(255,255,255,0.25); }
+    .dot.off { background: #2a2a2a; }
+
+    /* Save button */
+    .save-btn {
+      display: block;
+      width: 100%;
+      margin-top: 24px;
+      padding: 14px;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      letter-spacing: -0.2px;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .save-btn:hover { opacity: 0.9; }
+    .save-btn:active { transform: scale(0.99); }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 100px;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Info block */
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+    .info-row span:first-child { color: var(--muted2); }
+    .info-row span:last-child { color: var(--text); font-family: 'Space Grotesk', monospace; }
+
+    /* Footer */
+    .footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-left span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-left a {
+      font-size: 12px;
+      color: var(--muted2);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-left a:hover { color: var(--text); }
+
+    .footer-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-right a {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 5px 12px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .footer-right a:hover { color: var(--text); border-color: #444; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="topbar">
+      <div class="logo">SC<em>Fucker</em></div>
+      <div class="topbar-links">
+        <a href="https://blvcksyxx.xyz" target="_blank">blvcksyxx.xyz</a>
+        <a href="https://github.com/blvcksyxx/SCFucker" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="page-title">Settings</div>
+    <div class="page-subtitle">Configure how SCFucker routes your SoundCloud traffic.</div>
+
+    <!-- Enable / Disable -->
+    <div class="section">
+      <div class="section-label">Extension</div>
+      <div class="card">
+        <div class="card-row">
+          <div class="row-left">
+            <span class="row-title">Enable bypass</span>
+            <span class="row-desc">Route SoundCloud API through proxy</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="enabledToggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proxy -->
+    <div class="section">
+      <div class="section-label">Proxy</div>
+      <div class="card">
+        <div class="card-row" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+          <div class="row-left">
+            <span class="row-title">Proxy URL</span>
+            <span class="row-desc">Supports socks5://, http://, https://</span>
+          </div>
+          <div class="input-wrap">
+            <input
+              class="field"
+              type="text"
+              id="proxyInput"
+              placeholder="socks5://127.0.0.1:9050"
+              spellcheck="false"
+            />
+          </div>
+        </div>
+        <div class="presets">
+          <button class="preset" data-proxy="socks5://127.0.0.1:9050">Tor (9050)</button>
+          <button class="preset" data-proxy="socks5://127.0.0.1:1080">SOCKS5 (1080)</button>
+          <button class="preset" data-proxy="http://127.0.0.1:8080">HTTP (8080)</button>
+          <button class="preset" data-proxy="http://127.0.0.1:3128">Squid (3128)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Routing info -->
+    <div class="section">
+      <div class="section-label">Routing</div>
+      <div class="info-card">
+        <div class="info-row">
+          <span>api-v2.soundcloud.com</span>
+          <span id="routeApi">→ proxy</span>
+        </div>
+        <div class="info-row">
+          <span>soundcloud.com (page)</span>
+          <span>→ direct</span>
+        </div>
+        <div class="info-row">
+          <span>CDN / audio segments</span>
+          <span>→ direct</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="save-btn" id="saveBtn">Save settings</button>
+
+    <div class="footer">
+      <div class="footer-left">
+        <span>Made by <a href="https://blvcksyxx.xyz" target="_blank">blvcksyxx</a></span>
+        <a href="https://github.com/blvcksyxx/SCFucker" target="_blank">github.com/blvcksyxx/SCFucker</a>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/blvcksyxx/SCFucker/issues" target="_blank">Report issue</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast">Settings saved</div>
+
+  <script src="options.js"></script>
+</body>
+</html>
