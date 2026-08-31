@@ -141,4 +141,4 @@ Click the SCFucker icon in the toolbar → **Configure** to open settings.
 - Supported formats: `socks5://host:port`, `http://host:port`, `http://user:pass@host:port`
 
 ---
-[blvcksyxx.xyz](https://blvcksyxx.xyz) · [github.com/blvcksyxx/SCFucker](https://github.com/blvcksyxx/SCFucker)
+[blvcksyxx.xyz](https://blvcksyxx.xyz)
