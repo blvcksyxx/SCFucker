@@ -2,7 +2,7 @@
 
 **Bypass SoundCloud geo-restrictions.** No VPN, no bullshit — just routes the SoundCloud API through a proxy so you get full tracks instead of 30-second previews.
 
-Made by [blvcksyxx](https://blvcksyxx.xyz) · [github.com/blvcksyxx/SCFucker](https://github.com/blvcksyxx/SCFucker)
+Made by [blvcksyxx](https://blvcksyxx.xyz)
 
 ---
 
