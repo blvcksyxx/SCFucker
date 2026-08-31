@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "SCFucker",
+  "version": "1.0.0",
+  "description": "Bypass SoundCloud geo-restrictions by routing API requests through a proxy.",
+  "permissions": [
+    "proxy",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.soundcloud.com/*",
+    "*://*.sndcdn.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
