@@ -31,7 +31,7 @@ sudo systemctl enable tor  # start on boot
 
 Verify it works:
 ```bash
-curl --socks5 127.0.0.1:9050 https://api.ipify.org
+curl -L --socks5 127.0.0.1:9050 https://api.blvcksyxx.xyz/ip
 # Should return a foreign IP, not yours
 ```
 
@@ -73,7 +73,7 @@ net start tor
 
 Verify it works (in another terminal):
 ```powershell
-curl --socks5 127.0.0.1:9050 https://api.ipify.org
+curl -L --socks5 127.0.0.1:9050 https://api.blvcksyxx.xyz/ip
 ```
 Should return a foreign IP.
 
